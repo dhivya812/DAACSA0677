@@ -1,0 +1,22 @@
+# Master Theorem
+def master_theorem(a, b, k):
+    if a > b ** k:
+        return "T(n) = Θ(n^log_b(a))"
+    elif a == b ** k:
+        return "T(n) = Θ(n^k * log(n))"
+    else:
+        return "T(n) = Θ(n^k)"
+
+# Substitution Method
+def substitution_method(T, n):
+    if n == 0:
+        return 1
+    else:
+        return T(n-1) + 2*n
+
+# Iteration Method
+def iteration_method(a, b, f, g, n):
+    if n == 0:
+        return a
+    else:
+        return f(n) * iteration_method(a, b, f, g, n-1) + g(n)
