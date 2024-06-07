@@ -1,0 +1,14 @@
+def sort_odd_even_positions(nums):
+    odd_indices = [num for num in nums if num % 2 != 0]
+    even_indices = [num for num in nums if num % 2 == 0]
+    odd_indices.sort()
+    even_indices.sort()
+    
+    result = [None] * len(nums)
+    result[::2] = even_indices
+    result[1::2] = odd_indices
+    
+    return result
+
+nums = [4, 2, 5, 7]
+print(sort_odd_even_positions(nums))
