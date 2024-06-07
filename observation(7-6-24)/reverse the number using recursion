@@ -1,0 +1,14 @@
+def reverse_number(n, reversed_num=0):
+    if n == 0:
+        return reversed_num
+    else:
+        return reverse_number(n // 10, reversed_num * 10 + n % 10)
+
+
+print("Aim: To reverse a given number using recursion.")
+
+number = int(input("Enter a number: "))
+
+print(f"Reversed number: {reverse_number(number)}")
+
+print("Exit")
