@@ -1,0 +1,28 @@
+from itertools import chain, combinations
+
+def get_all_subset_sums(nums):
+    subset_sums = []
+    for subset in chain.from_iterable(combinations(nums, r) for r in range(len(nums) + 1)):
+        subset_sums.append(sum(subset))
+    return subset_sums
+
+def meet_in_the_middle(nums, target):
+    mid = len(nums) // 2
+    left_half = nums[:mid]
+    right_half = nums[mid:]
+    left_sums = get_all_subset_sums(left_half)
+    right_sums = get_all_subset_sums(right_half)
+    right_sums_set = set(right_sums)
+    for left_sum in left_sums:
+        if (target - left_sum) in right_sums_set:
+            return True
+
+    return False
+
+nums = [3, 34, 4, 12, 5, 2]
+target = 9
+
+if meet_in_the_middle(nums, target):
+    print("There exists a subset with the given target sum.")
+else:
+    print("No subset with the given target sum exists.")
