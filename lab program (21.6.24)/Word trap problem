@@ -1,0 +1,37 @@
+from collections import defaultdict
+def build_graph(words):
+    graph = defaultdict(list)
+    for word in words:
+        first_letter = word[0]
+        last_letter = word[-1]
+        graph[first_letter].append(word)
+    return graph
+
+def longest_path(graph, word, memo):
+    if word in memo:
+        return memo[word]
+    max_length = 1
+    max_path = [word]
+
+    for next_word in graph[word[-1]]:
+        path_length, path = longest_path(graph, next_word, memo)
+        if path_length + 1 > max_length:
+            max_length = path_length + 1
+            max_path = [word] + path
+    memo[word] = (max_length, max_path)
+    return memo[word]
+
+def find_longest_chain(words):
+    graph = build_graph(words)
+    memo = {}
+    longest_chain = []
+    for word in words:
+        _, path = longest_path(graph, word, memo)
+        if len(path) > len(longest_chain):
+            longest_chain = path
+    return longest_chain
+
+words = ["apple", "egg", "snack", "karate", "elephant", "tiger", "rat"]
+longest_chain = find_longest_chain(words)
+print("Longest chain of words:")
+print(" -> ".join(longest_chain))
