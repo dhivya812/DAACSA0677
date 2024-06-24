@@ -1,0 +1,15 @@
+def wiggleSort(nums):
+    nums.sort()
+    n = len(nums)
+    half = (n + 1) // 2
+
+    smaller_half = nums[:half]
+    larger_half = nums[half:]
+    smaller_half.reverse()
+    larger_half.reverse()
+    nums[::2] = smaller_half
+    nums[1::2] = larger_half
+nums = [1, 5, 1, 1, 6, 4]
+wiggleSort(nums)
+print(nums)  
+# Output: [1, 6, 1, 5, 1, 4]
