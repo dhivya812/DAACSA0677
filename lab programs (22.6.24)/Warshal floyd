@@ -1,0 +1,20 @@
+def floyd_warshall(graph):
+    V = len(graph)
+    dist = [list(row) for row in graph]
+    for k in range(V):
+        for i in range(V):
+            for j in range(V):
+                dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+    return dist
+
+inf = float('inf')
+graph = [
+    [0, 3, inf, inf],
+    [2, 0, inf, inf],
+    [inf, 7, 0, 1],
+    [6, inf, inf, 0]
+]
+distances = floyd_warshall(graph)
+print("Shortest distances between every pair of vertices:")
+for row in distances:
+    print(row)
