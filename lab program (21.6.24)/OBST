@@ -1,0 +1,46 @@
+def optimal_bst(keys, p, q):
+    n = len(keys)
+    cost = [[0 for _ in range(n+1)] for _ in range(n+1)]
+    weight = [[0 for _ in range(n+1)] for _ in range(n+1)]
+    root = [[0 for _ in range(n)] for _ in range(n)]
+    for i in range(n+1):
+        weight[i][i] = q[i]
+        cost[i][i] = q[i]
+    
+    for i in range(n):
+        weight[i][i+1] = q[i] + p[i] + q[i+1]
+        cost[i][i+1] = q[i] + p[i] + q[i+1]
+        root[i][i] = i
+    for l in range(2, n+1):
+        for i in range(n-l+1):
+            j = i + l
+            weight[i][j] = weight[i][j-1] + p[j-1] + q[j]
+            cost[i][j] = float('inf')
+            for r in range(i, j):
+                c = cost[i][r] + cost[r+1][j] + weight[i][j]
+                if c < cost[i][j]:
+                    cost[i][j] = c
+                    root[i][j-1] = r
+    
+    return cost, root
+def print_tree(root, i, j, keys, parent, direction):
+    if i <= j:
+        r = root[i][j]
+        print(f'{keys[r]} is the {direction} child of {parent}')
+        print_tree(root, i, r-1, keys, keys[r], 'left')
+        print_tree(root, r+1, j, keys, keys[r], 'right')
+
+keys = [10, 20, 30]
+p = [0.3, 0.2, 0.5]
+q = [0.1, 0.2, 0.3, 0.4]
+cost, root = optimal_bst(keys, p, q)
+print("Cost matrix:")
+for row in cost:
+    print(row)
+
+print("\nRoot matrix:")
+for row in root:
+    print(row)
+
+print("\nOptimal BST structure:")
+print_tree(root, 0, len(keys)-1, keys, 'root', 'root')
