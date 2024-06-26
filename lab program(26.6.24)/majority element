@@ -1,0 +1,13 @@
+from collections import Counter
+
+def majority_element(nums):
+    counts = Counter(nums)
+    return max(counts, key=counts.get)
+
+# Example 1
+nums1 = [3, 2, 3]
+print(majority_element(nums1))  # Output: 3
+
+# Example 2
+nums2 = [2, 2, 1, 1, 1, 2, 2]
+print(majority_element(nums2))  # Output: 2
