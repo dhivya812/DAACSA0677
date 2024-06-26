@@ -1,0 +1,26 @@
+def binary_search(arr, x):
+    low = 0
+    high = len(arr) - 1
+    mid = 0
+    count = 0
+
+    while low <= high:
+        mid = (high + low) // 2
+        count += 1
+
+        if arr[mid] < x:
+            low = mid + 1
+        elif arr[mid] > x:
+            high = mid - 1
+        else:
+            return mid, count
+
+    return -1, count
+
+# Test the binary search algorithm
+arr = [5, 10, 15, 20, 25, 30, 35, 40, 45]
+x = 20
+result, comparisons = binary_search(arr, x)
+
+print("Element found at index:", result)
+print("Number of comparisons made:", comparisons)
