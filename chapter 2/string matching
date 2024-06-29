@@ -1,0 +1,14 @@
+def stringMatching(words):
+    return [word for word in words if any(other_word != word and other_word.find(word) != -1 for other_word in words)]
+
+# Example 1
+words1 = ["mass", "as", "hero", "superhero"]
+print(stringMatching(words1))  # Output: ["as", "hero"]
+
+# Example 2
+words2 = ["leetcode", "et", "code"]
+print(stringMatching(words2))  # Output: ["et", "code"]
+
+# Example 3
+words3 = ["blue", "green", "bu"]
+print(stringMatching(words3))  # Output: []
