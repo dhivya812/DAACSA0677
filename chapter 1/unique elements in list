@@ -1,0 +1,8 @@
+# Create a list with duplicate elements
+my_list = [1, 2, 2, 3, 4, 4, 5]
+
+# Generate a unique elements list without using functions
+unique_list = list(set(my_list))
+
+# Print the unique elements list
+print(unique_list)
