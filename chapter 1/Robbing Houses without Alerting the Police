@@ -1,0 +1,5 @@
+houses = ["House A", "House B", "House C", "House D"]
+loot = {"House A": "$100,000", "House B": "$50,000", "House C": "$75,000", "House D": "$120,000"}
+
+for house in houses:
+    print(f"Robbing {house} and stealing {loot[house]}")
