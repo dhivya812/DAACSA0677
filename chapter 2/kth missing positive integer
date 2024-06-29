@@ -1,0 +1,20 @@
+def findKthPositive(arr, k):
+    missing = []
+    i = 1
+    while len(missing) < k:
+        if i not in arr:
+            missing.append(i)
+        i += 1
+    return missing[-1]
+
+# Example 1
+arr1 = [2, 3, 4, 7, 11]
+k1 = 5
+output1 = findKthPositive(arr1, k1)
+print(output1)  # Output: 9
+
+# Example 2
+arr2 = [1, 2, 3, 4]
+k2 = 2
+output2 = findKthPositive(arr2, k2)
+print(output2)  # Output: 6
