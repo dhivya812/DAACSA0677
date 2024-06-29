@@ -1,0 +1,8 @@
+def find_max_element(input_list):
+    max_element = max(input_list)
+    return max_element
+
+# Example Usage
+my_list = [3, 7, 1, 9, 4, 6]
+max_value = find_max_element(my_list)
+print(f"The maximum element in the list is: {max_value}")
