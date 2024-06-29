@@ -1,0 +1,14 @@
+# List to be sorted
+my_list = [10, 5, 8, 20, 2]
+
+# Sorting the list
+for i in range(len(my_list)):
+    for j in range(i + 1, len(my_list)):
+        if my_list[i] > my_list[j]:
+            my_list[i], my_list[j] = my_list[j], my_list[i]
+
+# Finding the maximum element
+max_element = my_list[-1]
+
+print("Sorted List:", my_list)
+print("Maximum Element in the List:", max_element)
